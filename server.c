@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amoubare <amoubare@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/14 21:38:17 by amoubare          #+#    #+#             */
+/*   Updated: 2022/04/15 03:58:31 by amoubare         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <signal.h>
 #include <unistd.h>
 #include <stdio.h>
 
-void    hehe(int sig)
+void	hehe(int sig)
 {
-    static char	x;
+	static char	x;
 	static int	i;
 	static int	count;
 
@@ -25,14 +37,16 @@ void    hehe(int sig)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    int pid;
+	int	pid;
 
-    pid = getpid();
-    printf("server PID : %d\n", pid);
-    signal(SIGUSR1, &hehe);
+	(void) argv;
+	(void) argc;
+	pid = getpid();
+	printf("server PID : %d\n", pid);
+	signal(SIGUSR1, &hehe);
 	signal(SIGUSR2, &hehe);
-    while(1)
-        pause();
+	while (1)
+		pause();
 }
