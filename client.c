@@ -6,7 +6,7 @@
 /*   By: amoubare <amoubare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 21:37:52 by amoubare          #+#    #+#             */
-/*   Updated: 2022/04/15 03:58:14 by amoubare         ###   ########.fr       */
+/*   Updated: 2022/04/15 04:15:01 by amoubare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,24 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+void	ft_putstr(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (s)
+	{
+		while (s[i])
+		{
+			write(1, &s[i], 1);
+			i++;
+		}
+	}
+}
+
 void	ft_error(void)
 {
-	printf("Error : Wrong PID.");
+	ft_putstr("Error");
 	exit(0);
 }
 
@@ -53,7 +68,8 @@ int	main(int argc, char **argv)
 {
 	int	pid;
 
-	(void) argc;
+	if (argc != 3)
+		ft_error();
 	pid = atoi(*(argv + 1));
 	bit_sender(*(argv + 2), pid);
 }

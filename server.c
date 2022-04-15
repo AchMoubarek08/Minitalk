@@ -6,7 +6,7 @@
 /*   By: amoubare <amoubare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 21:38:17 by amoubare          #+#    #+#             */
-/*   Updated: 2022/04/15 03:58:31 by amoubare         ###   ########.fr       */
+/*   Updated: 2022/04/15 04:19:53 by amoubare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,39 @@ void	hehe(int sig)
 	}
 }
 
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putnbr(int n)
+{
+	if (n >= 0 && n <= 9)
+	{
+		ft_putchar(n + '0');
+	}
+	else
+	{
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
+	}
+}
+
+void	ft_putstr(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (s)
+	{
+		while (s[i])
+		{
+			write(1, &s[i], 1);
+			i++;
+		}
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	int	pid;
@@ -44,7 +77,9 @@ int	main(int argc, char **argv)
 	(void) argv;
 	(void) argc;
 	pid = getpid();
-	printf("server PID : %d\n", pid);
+	ft_putstr("server PID : ");
+	ft_putnbr(pid);
+	ft_putstr("\n");
 	signal(SIGUSR1, &hehe);
 	signal(SIGUSR2, &hehe);
 	while (1)
